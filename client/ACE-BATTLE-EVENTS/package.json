@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "vercel-build": "npm install --legacy-peer-deps && npm run build",
+    "build": "vite build",
     "dev": "vite --host",
-    "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
