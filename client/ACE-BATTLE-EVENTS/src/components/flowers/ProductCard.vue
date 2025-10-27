@@ -1,7 +1,7 @@
 <template>
   <div class="product-card">
     <div class="product-card__image">
-      <img :src="product.image" :alt="product.name" />
+      <img :src="cleanImageUrl" :alt="product.name" />
       
       <!-- Discount Badge -->
       <div v-if="product.discount" class="product-card__discount">
@@ -45,7 +45,7 @@
           {{ product.originalPrice }} грн
         </span>
         <span class="product-card__current-price">
-          {{ product.price }} грн
+          {{ Number(product.volume) /2.5 }} грн
         </span>
       </div>
 
@@ -63,6 +63,7 @@
 </template>
 
 <script setup lang="ts">
+
 interface Product {
   id: number;
   name: string;
@@ -98,6 +99,8 @@ const quickOrder = () => {
 const toggleWishlist = () => {
   emit('toggleWishlist', props.product);
 };
+const cleanImageUrl = props.product.image.replace('http://localhost:7000', '');
+console.log(cleanImageUrl);
 </script>
 
 <style scoped>
